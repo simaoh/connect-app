@@ -1,0 +1,21 @@
+{
+  "name": "connect-app",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Gang Qiu <gangqiu0@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/gang-qiu/connect-app",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.3"
+  }
+}

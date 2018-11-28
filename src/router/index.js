@@ -8,7 +8,7 @@ app.get("/am_i_alive", (req, res) => {
 
 app.get("/", (req, res) => {
   console.log(__dirname)
-  res.sendFile('index.html', {root: path.join(__dirname, '..', 'public')});
+  res.render('home', {title: 'Connect App'});
 });
 
 app.get("/api/user/:userId", (req, res) => {
