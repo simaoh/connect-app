@@ -11,6 +11,7 @@ app.set('view engine', 'pug');
 
 // set the path for static files
 app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', '..', 'bower_components')));
 
 // set app port and json parser
 app.set('port', process.env.PORT || 3000);
