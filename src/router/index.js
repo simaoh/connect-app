@@ -7,8 +7,11 @@ app.get("/am_i_alive", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  console.log(__dirname)
-  res.render('home', {title: 'Connect App'});
+  res.render('home', {title: 'Home'});
+});
+
+app.get("/notifications", (req, res) => {
+  res.render('notifications', {title: 'Notifications'});
 });
 
 app.get("/api/user/:userId", (req, res) => {
