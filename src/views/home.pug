@@ -2,7 +2,8 @@ extends layout
 
 block content
   h1 Hang out with cool people now
-  input.form-control.input-lg#search-box(placeholder="Find things to do")
+  form#events-search-field
+    input.form-control.input-lg(placeholder="Find things to do")
   hr
   p.lead 9 events happening now in Manhattan
   .events-list

@@ -30,4 +30,9 @@ app.post("/api/user/", (req, res) => {
   res.send()
 });
 
+app.get("/api/events/:searchTerm", (req, res) => {
+  console.log(req.params.searchTerm);
+  res.send({events: []});
+});
+
 module.exports = app;
