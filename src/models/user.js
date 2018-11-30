@@ -6,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    User.hasMany(models.Event, {
-      foreignKey: {
-        name: 'authorId'
-      }
-    })
+    // User.hasMany(models.Event, {
+    //   foreignKey: {
+    //     name: 'authorId'
+    //   }
+    // })
   };
   return User;
 };

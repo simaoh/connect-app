@@ -34,6 +34,13 @@ app.post("/api/user/", (req, res) => {
   res.send()
 });
 
+// get all events
+app.get("/api/events", (req, res) => {
+  model.Event.findAll().then(events => {
+    res.json(events);
+  });
+});
+
 app.get("/api/events/:searchTerm", (req, res) => {
   console.log(req.params.searchTerm);
   res.send({events: []});
