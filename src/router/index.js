@@ -14,6 +14,10 @@ app.get("/notifications", (req, res) => {
   res.render('notifications', {title: 'Notifications'});
 });
 
+app.get("/event/details/:eventId", (req, res) => {
+  console.log(req.params.eventId);
+});
+
 app.get("/api/user/:userId", (req, res) => {
   console.log(req.params.userId);
   model.User.findByPk(req.params.userId).then(user => {
