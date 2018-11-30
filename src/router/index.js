@@ -1,6 +1,8 @@
 const path = require('path');
 const app = require('./app');
 const model = require('../models');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 app.get("/am_i_alive", (req, res) => {
   res.send("OK!");
@@ -41,9 +43,17 @@ app.get("/api/events", (req, res) => {
   });
 });
 
+// return events where the title matches a search term
 app.get("/api/events/:searchTerm", (req, res) => {
-  console.log(req.params.searchTerm);
-  res.send({events: []});
+  model.Event.findAll({
+    where: {
+      title: {
+        [Op.iLike]: `%${req.params.searchTerm}%`
+      }
+    }
+  }).then(results => {
+    res.json(results);
+  });
 });
 
 module.exports = app;
