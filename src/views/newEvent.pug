@@ -6,23 +6,25 @@ block content
     div.form-group
       label(for="title" class="col-sm-2 control-label") Title
       div.col-sm-8
-        input.form-control#title
+        input.form-control(name="title")#new-event-form-title
     div.form-group
       label(for="location" class="col-sm-2 control-label") Location
       div.col-sm-8
-        input.form-control#location
+        input.form-control(name="location")#new-event-form-location
     div.form-group
       label(for="start" class="col-sm-2 control-label") Start
       div.col-sm-8
-        input.form-control#start(type="date")
+        input.form-control(name="start")(type="date")#new-event-form-start
     div.form-group
       label(for="end" class="col-sm-2 control-label") End
       div.col-sm-8
-        input.form-control#end(type="date")
+        input.form-control(name="end")(type="date")#new-event-form-end
     div.form-group
       label(for="description" class="col-sm-2 control-label") Description
       div.col-sm-8
-        textarea.form-control#description(style="height: 150px;")
+        textarea.form-control(name="description" style="height: 150px;")#new-event-form-description
     div.form-group
       div.col-sm-offset-2.col-sm-10
         button.btn.btn-default Create Event
+
+    script(src="/js/newEvent.js")

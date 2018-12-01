@@ -5,12 +5,14 @@ $(function() {
 
   $.get('/api/events/', renderEventsList);
 
+  // handle event name search
   $('#events-search-field').submit(event => {
     event.preventDefault();
     const searchTerm = $(event.target).find('input').val();
     $.get(`/api/events/${searchTerm}`, renderEventsList);
   });
 
+  // navigate to new event page
   $('#create-event-btn').click(() => {
     window.location.href = '/event/new/';
   });

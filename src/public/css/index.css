@@ -60,3 +60,7 @@ textarea {
     cursor: pointer;
     background: #eee;
 }
+
+.error {
+    background-color: lavenderblush;
+}
