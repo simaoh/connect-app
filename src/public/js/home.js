@@ -24,7 +24,7 @@ function renderEventsList(eventsData) {
   eventsData.forEach(eventData => {
     $('#events-list').append(
       `
-       <div class="grid-list-item">
+       <div class="grid-list-item hoverable">
          <h2>${eventData.title}</h2>
          <p><i class="fa fa-map-marker"></i> ${eventData.location}</p>
          <p><i class="fa fa-calendar"></i> ${new Date(eventData.startAt).toLocaleString()}</p>

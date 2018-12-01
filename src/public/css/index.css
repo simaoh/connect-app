@@ -67,4 +67,12 @@ textarea {
 
 .grid-list-item {
     width: 300px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.hoverable:hover {
+    cursor: pointer;
+    background: #eee;
 }
