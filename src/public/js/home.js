@@ -10,6 +10,10 @@ $(function() {
     const searchTerm = $(event.target).find('input').val();
     $.get(`/api/events/${searchTerm}`, renderEventsList);
   });
+
+  $('#create-event-btn').click(() => {
+    window.location.href = '/event/new/';
+  });
 });
 
 function renderEventsList(eventsData) {

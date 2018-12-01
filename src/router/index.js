@@ -16,6 +16,10 @@ app.get("/notifications", (req, res) => {
   res.render('notifications', {title: 'Notifications'});
 });
 
+app.get("/event/new", (req, res) => {
+  res.render('newEvent', {title: 'New Event'});
+});
+
 app.get("/event/details/:eventId", (req, res) => {
   console.log(req.params.eventId);
 });
