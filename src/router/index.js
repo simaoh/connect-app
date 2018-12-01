@@ -51,14 +51,12 @@ app.get("/api/events", (req, res) => {
 // return events where the title matches a search term
 app.get("/api/events/:searchTerm", (req, res) => {
   model.Event.findAll({
+    include: [{model: model.User, as: 'author'}],
     where: {
       title: {
         [Op.iLike]: `%${req.params.searchTerm}%`
       }
     }
-  }).then(events => {
-    // get all author data and append to every event
-    return model.Event.getAuthorsInfo(events);
   }).then(results => {
     res.json(results);
   });
