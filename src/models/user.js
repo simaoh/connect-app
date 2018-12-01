@@ -4,12 +4,14 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: DataTypes.STRING
-  }, {});
-  User.associate = function(models) {
+  });
+
+  User.associate = models => {
     User.hasMany(models.Event, {
       as: 'AuthoredEvents',
       foreignKey: 'authorId'
     });
   };
+
   return User;
 };
