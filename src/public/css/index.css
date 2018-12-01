@@ -50,23 +50,7 @@ textarea {
     margin-top: 20px;
 }
 
-.grid-list-container {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-
-    -webkit-flex-flow: row wrap;
-    justify-content: space-around;
-}
-
-.grid-list-item {
-    width: 300px;
+.event-card {
     padding: 10px 20px;
     border-radius: 5px;
     margin: 10px;

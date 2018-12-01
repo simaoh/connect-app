@@ -21,17 +21,25 @@ function renderEventsList(eventsData) {
   $('#events-list').empty();
   $('span#events-count').text(eventsData.length);
 
-  eventsData.forEach(eventData => {
-    $('#events-list').append(
-      `
-       <div class="grid-list-item hoverable">
+  eventsData.forEach((eventData, index) => {
+    if (index % 3 === 0) {
+      // create a new row
+      $('#events-list').append(`<div class="row"></div>`)
+    }
+    $('#events-list .row').last().append(renderEventCard(eventData));
+  })
+}
+
+function renderEventCard(eventData) {
+  return $(`
+    <div class="col-sm-4">
+      <div class="event-card hoverable">
          <h2>${eventData.title}</h2>
          <p><i class="fa fa-map-marker"></i> ${eventData.location}</p>
          <p><i class="fa fa-calendar"></i> ${new Date(eventData.startAt).toLocaleString()}</p>
          <p><i class="fa fa-user"></i> ${eventData.author.firstName} ${eventData.author.lastName}</p>
          <p>${eventData.description}</p>
-       </div>
-      `
-    )
-  })
+       </div>  
+    </div>
+  `);
 }
