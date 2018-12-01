@@ -17,6 +17,7 @@ function renderEventsList(eventsData) {
     console.log(`No data returned ${eventsData}`);
     return;
   }
+  console.log(eventsData);
   $('#events-list').empty();
   $('span#events-count').text(eventsData.length);
 

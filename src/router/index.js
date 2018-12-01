@@ -38,8 +38,31 @@ app.post("/api/user/", (req, res) => {
 
 // get all events
 app.get("/api/events", (req, res) => {
-  model.Event.findAll().then(events => {
-    res.json(events);
+  // the final events json
+  const eventsAndAuthor = [];
+
+  // find all current events
+  // TODO: prefetch event users
+  model.Event.findAll({
+    // this is not working correctly. we have n+1 query
+    include: [{model: model.User, as: 'author'}]
+  }).then(events => {
+    // get data from all users and manually construct the user data
+    return Promise.all(events.map(event => {
+      const eventData = event.dataValues;
+
+      // get author data
+      return event.getAuthor().then(author => {
+        eventData.author = {
+          firstName: author.firstName,
+          lastName: author.lastName,
+          email: author.email
+        };
+        eventsAndAuthor.push(eventData);
+      });
+    }));
+  }).then((result) => {
+    res.json(eventsAndAuthor);
   });
 });
 
