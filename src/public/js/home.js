@@ -18,6 +18,7 @@ function renderEventsList(eventsData) {
     return;
   }
   $('#events-list').empty();
+  $('span#events-count').text(eventsData.length);
 
   eventsData.forEach(eventData => {
     $('#events-list').append(
