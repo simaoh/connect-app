@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     endAt: DataTypes.DATE,
   }, {});
   Event.associate = function(models) {
-    // associations can be defined here
+    Event.belongsTo(models.User, {as: 'author'});
   };
   return Event;
 };
