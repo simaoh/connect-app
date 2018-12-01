@@ -3,24 +3,24 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.addColumn(
-      'Events',
+      'events',
       'location',
       Sequelize.STRING
     ).then(() => {
       return queryInterface.addColumn(
-        'Events',
+        'events',
         'description',
         Sequelize.TEXT
       );
     }).then(() => {
       return queryInterface.addColumn(
-        'Events',
+        'events',
         'startAt',
         Sequelize.DATE
       )
     }).then(() => {
       return queryInterface.addColumn(
-        'Events',
+        'events',
         'endAt',
         Sequelize.DATE
       )
@@ -28,12 +28,12 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('Events', 'location').then(() => {
-      return queryInterface.removeColumn('Events', 'description')
+    return queryInterface.removeColumn('events', 'location').then(() => {
+      return queryInterface.removeColumn('events', 'description')
     }).then(() => {
-      return queryInterface.removeColumn('Events', 'startAt')
+      return queryInterface.removeColumn('events', 'startAt')
     }).then(() => {
-      return queryInterface.removeColumn('Events', 'endAt')
+      return queryInterface.removeColumn('events', 'endAt')
     });
   }
 };

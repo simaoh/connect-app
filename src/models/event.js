@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
 
   Event.associate = models => {
     Event.belongsTo(models.User, {as: 'author'});
+
+    Event.belongsToMany(models.User, {
+      as: 'AttendingUsers',
+      through: 'userEvents'
+    });
   };
 
   // class method to get user info from a list of events

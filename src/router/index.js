@@ -44,10 +44,7 @@ app.get("/api/events", (req, res) => {
     // this is not working correctly. we have n+1 query
     include: [{model: model.User, as: 'author'}]
   }).then(events => {
-    // get all author data and append to every event
-    return model.Event.getAuthorsInfo(events);
-  }).then(result => {
-    res.json(result);
+    res.json(events);
   });
 });
 
