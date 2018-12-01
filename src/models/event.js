@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     startAt: DataTypes.DATE,
     endAt: DataTypes.DATE,
+  }, {
+    tableName: 'events'
   });
 
   Event.associate = models => {
