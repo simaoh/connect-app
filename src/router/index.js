@@ -52,6 +52,14 @@ app.get("/api/events", (req, res) => {
   });
 });
 
+// create new event
+app.post("/api/event/", (req, res) => {
+  console.log(req.body);
+  model.Event.create(req.body).then(newEvent => {
+    res.json(newEvent.dataValues);
+  });
+});
+
 // return events where the title matches a search term
 app.get("/api/events/:searchTerm", (req, res) => {
   model.Event.findAll({

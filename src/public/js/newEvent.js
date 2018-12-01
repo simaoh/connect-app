@@ -13,7 +13,15 @@ $(() => {
         fieldIsValid($startBox, startIsValid) &&
         fieldIsValid($endBox, endIsValid) &&
         fieldIsValid($descriptionBox, descriptionIsValid)) {
-      console.log('valid!');
+      const newEventJson = {
+        title: $titleBox.val(),
+        location: $titleBox.val(),
+        startAt: $startBox.val(),
+        endAt: $endBox.val(),
+        description: $descriptionBox.val()
+      };
+
+      submitForm(newEventJson);
     }
 
     function titleIsValid(title) {return !!title;}
@@ -32,4 +40,18 @@ function fieldIsValid($field, condition) {
     $field.addClass('error');
     return false;
   }
+}
+
+function submitForm(newEventJson) {
+  console.log(newEventJson);
+  $.ajax({
+    type: 'POST',
+    url: "/api/event",
+    dataType: 'json',
+    data: JSON.stringify(newEventJson),
+    contentType: 'application/json',
+    success: data => {
+      console.log(data);
+    }
+  })
 }
