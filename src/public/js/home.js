@@ -28,6 +28,7 @@ function renderEventsList(eventsData) {
          <h2>${eventData.title}</h2>
          <p><i class="fa fa-map-marker"></i> ${eventData.location}</p>
          <p><i class="fa fa-calendar"></i> ${new Date(eventData.startAt).toLocaleString()}</p>
+         <p><i class="fa fa-user"></i> ${eventData.author.firstName} ${eventData.author.lastName}</p>
          <p>${eventData.description}</p>
        </div>
       `
