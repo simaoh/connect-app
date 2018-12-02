@@ -16,6 +16,12 @@ $(function() {
   $('#create-event-btn').click(() => {
     window.location.href = '/event/new/';
   });
+
+  // show event details
+  $('#events-list').on('click', '.event-card', e => {
+    const eventId = $(e.target).closest('.event-card').data('event-id');
+    window.location.href = `/event/${eventId}`;
+  });
 });
 
 function renderEventsList(eventsData) {
@@ -39,7 +45,7 @@ function renderEventsList(eventsData) {
 function renderEventCard(eventData) {
   return $(`
     <div class="col-sm-4">
-      <div class="event-card hoverable">
+      <div class="event-card hoverable" data-event-id="${eventData.id}">
          <h2>${eventData.title}</h2>
          <p><i class="fa fa-map-marker"></i> ${eventData.location}</p>
          <p><i class="fa fa-calendar"></i> ${new Date(eventData.startAt).toLocaleString()}</p>

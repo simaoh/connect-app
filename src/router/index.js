@@ -20,8 +20,10 @@ app.get("/event/new", (req, res) => {
   res.render('newEvent', {title: 'New Event'});
 });
 
-app.get("/event/details/:eventId", (req, res) => {
-  console.log(req.params.eventId);
+app.get("/event/:eventId", (req, res) => {
+  model.Event.findByPk(req.params.eventId).then(event => {
+    res.render('eventDetails', {eventData: event});
+  })
 });
 
 app.get("/api/user/:userId", (req, res) => {
