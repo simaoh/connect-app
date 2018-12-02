@@ -1,4 +1,14 @@
 extends layout
 
 block content
-  h1= `${eventData.title}`
+  h1= title
+  h5
+    i.fa.fa-map-marker.fa-lg
+    span= location
+  h5
+    i.fa.fa-calendar.fa-lg
+    span= `${startAt} - ${endAt}`
+  h5
+    i.fa.fa-user.fa-lg
+    span= `${author.firstName} ${author.lastName}`
+  p= description

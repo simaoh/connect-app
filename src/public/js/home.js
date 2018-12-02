@@ -47,9 +47,9 @@ function renderEventCard(eventData) {
     <div class="col-sm-4">
       <div class="event-card hoverable" data-event-id="${eventData.id}">
          <h2>${eventData.title}</h2>
-         <p><i class="fa fa-map-marker"></i> ${eventData.location}</p>
-         <p><i class="fa fa-calendar"></i> ${new Date(eventData.startAt).toLocaleString()}</p>
-         <p><i class="fa fa-user"></i> ${eventData.author.firstName} ${eventData.author.lastName}</p>
+         <h5><i class="fa fa-map-marker"></i> ${eventData.location}</h5>
+         <h5><i class="fa fa-calendar"></i> ${new Date(eventData.startAt).toLocaleString()}</h5>
+         <h5><i class="fa fa-user"></i> ${eventData.author.firstName} ${eventData.author.lastName}</h5>
          <p>${eventData.description}</p>
        </div>  
     </div>

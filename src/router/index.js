@@ -21,8 +21,17 @@ app.get("/event/new", (req, res) => {
 });
 
 app.get("/event/:eventId", (req, res) => {
-  model.Event.findByPk(req.params.eventId).then(event => {
-    res.render('eventDetails', {eventData: event});
+  model.Event.findByPk(req.params.eventId, {
+    include: [{model: model.User, as: 'author'}]
+  }).then(event => {
+    res.render('eventDetails', {
+      title: event.title,
+      startAt: event.startAt.toLocaleString(),
+      endAt: event.endAt.toLocaleString(),
+      description: event.description,
+      location: event.location,
+      author: event.author
+    });
   })
 });
 
