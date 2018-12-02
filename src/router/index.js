@@ -43,9 +43,7 @@ app.post("/api/user/", (req, res) => {
 // get all events
 app.get("/api/events", (req, res) => {
   // find all current events
-  // TODO: prefetch event users
   model.Event.findAll({
-    // this is not working correctly. we have n+1 query
     include: [{model: model.User, as: 'author'}]
   }).then(events => {
     res.json(events);
@@ -54,8 +52,11 @@ app.get("/api/events", (req, res) => {
 
 // create new event
 app.post("/api/event/", (req, res) => {
-  console.log(req.body);
-  model.Event.create(req.body).then(newEvent => {
+  const data = req.body;
+  data.authorId = 1;
+  data.startAt = new Date(req.body.startAt);
+  data.endAt = new Date(req.body.endAt);
+  model.Event.create(data).then(newEvent => {
     res.json(newEvent.dataValues);
   });
 });
