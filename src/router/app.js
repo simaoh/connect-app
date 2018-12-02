@@ -35,6 +35,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// redirect unauthenticated users to the home page
+app.use((req, res, next) => {
+  // After successful login, redirect back to the intended page
+  if (!req.user && req.path !== "/login") {
+    req.session.returnTo = req.path;
+    res.redirect('/login');
+  } else {
+    next();
+  }
+});
+
 // set up passport authentication and user serialization logic
 passportConfigure(passport);
 

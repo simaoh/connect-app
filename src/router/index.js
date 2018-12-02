@@ -47,7 +47,8 @@ app.post("/login", (req, res, next) => {
     if (!user) { return res.redirect('/login'); }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('/');
+      res.redirect(req.session.returnTo || "/");
+      delete req.session.returnTo;
     });
   })(req, res, next);
 });
@@ -83,7 +84,7 @@ app.get("/api/events", (req, res) => {
 // create new event
 app.post("/api/event/", (req, res) => {
   const data = req.body;
-  data.authorId = 1;
+  data.authorId = req.user.id;
   data.startAt = new Date(req.body.startAt);
   data.endAt = new Date(req.body.endAt);
   model.Event.create(data).then(newEvent => {
