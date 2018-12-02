@@ -12,11 +12,6 @@ $(function() {
     $.get(`/api/events/${searchTerm}`, renderEventsList);
   });
 
-  // navigate to new event page
-  $('#create-event-btn').click(() => {
-    window.location.href = '/event/new/';
-  });
-
   // show event details
   $('#events-list').on('click', '.event-card', e => {
     const eventId = $(e.target).closest('.event-card').data('event-id');

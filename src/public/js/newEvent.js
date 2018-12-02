@@ -15,7 +15,7 @@ $(() => {
         fieldIsValid($descriptionBox, descriptionIsValid)) {
       const newEventJson = {
         title: $titleBox.val(),
-        location: $titleBox.val(),
+        location: $locationBox.val(),
         startAt: $startBox.val(),
         endAt: $endBox.val(),
         description: $descriptionBox.val()
@@ -51,7 +51,7 @@ function submitForm(newEventJson) {
     data: JSON.stringify(newEventJson),
     contentType: 'application/json',
     success: data => {
-      console.log(data);
+      window.location.href = '/event/' + data.id;
     }
   })
 }

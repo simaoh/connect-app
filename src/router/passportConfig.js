@@ -6,7 +6,12 @@ const authenticateByEmailAndPasswordStrategy = new LocalStrategy({
 }, (email, password, done) => {
   const passwordHash = password;
 
-  User.findOne({email: email, passwordHash: passwordHash}).then(user => {
+  User.findOne({
+    where: {
+      email: email.toLowerCase(),
+      passwordHash: passwordHash
+    }
+  }).then(user => {
     return done(undefined, user);
   }).catch(err => {
     done(err);

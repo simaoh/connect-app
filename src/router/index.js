@@ -53,6 +53,11 @@ app.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
+app.get("/logout", (req, res, next) => {
+  req.logout();
+  res.redirect("/login");
+});
+
 // ---------- api ---------- //
 
 app.get("/api/user/:userId", (req, res) => {
