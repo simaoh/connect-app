@@ -4,7 +4,8 @@ const User = require('../models').User;
 const AuthenticateByEmailAndPasswordStrategy = new LocalStrategy({
   usernameField: 'email'
 }, (email, password, done) => {
-  User.findOne({email: email, password: password}).then(user => {
+  const passwordHash = password;
+  User.findOne({email: email, passwordHash: passwordHash}).then(user => {
     return done(undefined, user);
   }).catch(err => {
     done(err);
@@ -24,7 +25,15 @@ const deserializeUserhandler = (id, done) => {
 };
 
 module.exports = function(passport) {
-  passport.use(AuthenticateByEmailAndPasswordStrategy);
+  passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done) => {
+    const passwordHash = password;
+    User.findOne({email: email, passwordHash: passwordHash}).then(user => {
+      return done(undefined, user);
+    }).catch(err => {
+      done(err);
+    });
+  }));
+
   passport.serializeUser(serializeUserhandler);
   passport.deserializeUser(deserializeUserhandler);
 }

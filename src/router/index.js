@@ -2,6 +2,7 @@ const path = require('path');
 const app = require('./app');
 const model = require('../models');
 const Sequelize = require('sequelize');
+const passport = require('passport');
 const Op = Sequelize.Op;
 
 app.get("/am_i_alive", (req, res) => {
@@ -10,6 +11,10 @@ app.get("/am_i_alive", (req, res) => {
 
 app.get("/", (req, res) => {
   res.render('home', {title: 'Home'});
+});
+
+app.get("/login", (req, res) => {
+  res.render('login');
 });
 
 app.get("/notifications", (req, res) => {
@@ -34,6 +39,22 @@ app.get("/event/:eventId", (req, res) => {
     });
   })
 });
+
+// ---------- open api ---------- //
+app.post("/login", (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    console.log(err);
+    console.log(user);
+    console.log(info);
+    if (req.user) {
+      res.redirect('/');
+    } else {
+      res.send(info.message);
+    }
+  })(req, res, next);
+});
+
+// ---------- api ---------- //
 
 app.get("/api/user/:userId", (req, res) => {
   console.log(req.params.userId);

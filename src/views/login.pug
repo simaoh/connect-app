@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  div.page-header
+    h3 Sign up
+  form.form-horizontal(id='signup-form', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    div.form-group
+      label.col-sm-3.control-label(for='email') Email
+      div.col-sm-7
+        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
+    div.form-group
+      label.col-sm-3.control-label(for='password') Password
+      div.col-sm-7
+        input.form-control(type='password', name='password', id='password', placeholder='Password', required)
+    div.form-group
+      div.col-sm-offset-3.col-sm-7
+        button.btn.btn-success(type='submit') Log in
