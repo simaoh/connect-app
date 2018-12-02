@@ -18,6 +18,7 @@ app.use(express.static(path.join(__dirname, '..', '..', 'bower_components')));
 // set app port and json parser
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // read form data
 
 // set up session and authentication
 app.use(session({

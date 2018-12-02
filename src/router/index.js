@@ -43,13 +43,10 @@ app.get("/event/:eventId", (req, res) => {
 // ---------- open api ---------- //
 app.post("/login", (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    console.log(err);
-    console.log(user);
-    console.log(info);
-    if (req.user) {
+    if (user) {
       res.redirect('/');
     } else {
-      res.send(info.message);
+      res.send(err || info);
     }
   })(req, res, next);
 });
