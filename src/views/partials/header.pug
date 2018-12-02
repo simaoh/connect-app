@@ -16,19 +16,19 @@
         li(class=(title == 'Notifications') ? 'active' : undefined)
           a(href='/notifications') Notifications
       ul.nav.navbar-nav.navbar-right
-        li(class=(title == 'New Event') && 'hidden')
-          button(id="create-event-btn" class="btn navbar-btn btn-sm btn-default") Create Event
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)
             a(href='/login') Login
         else
+          li(class=(title == 'New Event') && 'hidden')
+            button(id="create-event-btn" class="btn navbar-btn btn-sm btn-default") Create Event
           li.dropdown(class=(title == 'Account Management') ? 'active' : undefined)
             a.dropdown-toggle(href='#', data-toggle='dropdown')
-              if user.profile.picture
-                img(src=user.profile.picture, alt=(user.profile.name || user.email || user.id))
-              else
-                img(src=user.gravatar(60), alt=(user.profile.name || user.email || user.id))
-              span= user.profile.name || user.email || user.id
+              //if user.profile.picture
+              //  img(src=user.profile.picture, alt=(user.profile.name || user.email || user.id))
+              //else
+              //  img(src=user.gravatar(60), alt=(user.profile.name || user.email || user.id))
+              span= user.firstName || user.email || user.id
               i.caret
             ul.dropdown-menu
               li

@@ -29,6 +29,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// add the authenticated user to the response context
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
+
 // set up passport authentication and user serialization logic
 passportConfigure(passport);
 
