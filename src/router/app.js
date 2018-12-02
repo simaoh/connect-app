@@ -3,6 +3,8 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const passport = require('passport');
+const passportConfigure = require('./passportConfig');
 const app = express();
 
 // set pug as template engine and /public/html as the views directory
@@ -17,11 +19,16 @@ app.use(express.static(path.join(__dirname, '..', '..', 'bower_components')));
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
 
-// set up session
+// set up session and authentication
 app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: 'HEY',
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// set up passport authentication and user serialization logic
+passportConfigure(passport);
 
 module.exports = app;
