@@ -42,12 +42,13 @@ app.get("/event/:eventId", (req, res) => {
 
 // ---------- open api ---------- //
 app.post("/login", (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (user) {
-      res.redirect('/');
-    } else {
-      res.send(err || info);
-    }
+  passport.authenticate('local', (err, user) => {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/');
+    });
   })(req, res, next);
 });
 
