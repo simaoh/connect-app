@@ -1,21 +1,25 @@
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models').User;
+const bcryptPromise = require('../helpers/bcryptPromise');
 
 const authenticateByEmailAndPasswordStrategy = new LocalStrategy({
   usernameField: 'email'
 }, (email, password, done) => {
-  const passwordHash = password;
-
-  User.findOne({
-    where: {
-      email: email.toLowerCase(),
-      passwordHash: passwordHash
-    }
-  }).then(user => {
-    return done(undefined, user);
-  }).catch(err => {
-    done(err);
-  });
+    User.findOne({
+      where: {
+        email: email.toLowerCase(),
+      }
+    }).then(user => {
+      bcryptPromise.compare(password, user.passwordHash).then(result => {
+        if (result) {
+          done(undefined, user);
+        } else {
+          done('password incorrect');
+        }
+      });
+    }).catch(err => {
+      done(err);
+    });
 });
 
 const serializeUserhandler = (user, done) => {

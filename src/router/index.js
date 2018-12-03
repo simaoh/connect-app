@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render('login');
+  res.render('login', {title: 'Login'});
 });
 
 app.get("/notifications", (req, res) => {
