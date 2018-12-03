@@ -11,13 +11,16 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = models => {
     User.hasMany(models.Event, {
-      as: 'AuthoredEvents',
+      as: 'authoredEvents',
       foreignKey: 'authorId'
     });
 
+    User.hasMany(models.UserEvents, {foreignKey: 'userId'});
+
     User.belongsToMany(models.Event, {
-      as: 'AttendingEvents',
-      through: 'userEvents'
+      as: 'attendingEvents',
+      through: 'userEvents',
+      foreignKey: 'userId'
     });
   };
 

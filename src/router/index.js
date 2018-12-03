@@ -27,7 +27,9 @@ app.get("/event/new", (req, res) => {
 
 app.get("/event/:eventId", (req, res) => {
   model.Event.findByPk(req.params.eventId, {
-    include: [{model: model.User, as: 'author'}]
+    include: [{
+      model: model.User, as: 'author'
+    }]
   }).then(event => {
     res.render('eventDetails', {
       title: event.title,
@@ -80,7 +82,10 @@ app.post("/api/user/", (req, res) => {
 app.get("/api/events", (req, res) => {
   // find all current events
   model.Event.findAll({
-    include: [{model: model.User, as: 'author'}]
+    include: [
+      {model: model.User, as: 'author'},
+      {model: model.User, as: 'attendingUsers'}
+    ]
   }).then(events => {
     res.json(events);
   });
@@ -100,7 +105,10 @@ app.post("/api/event/", (req, res) => {
 // return events where the title matches a search term
 app.get("/api/events/:searchTerm", (req, res) => {
   model.Event.findAll({
-    include: [{model: model.User, as: 'author'}],
+    include: [
+      {model: model.User, as: 'author'},
+      {model: model.User, as: 'attendingUsers'}
+    ],
     where: {
       title: {
         [Op.iLike]: `%${req.params.searchTerm}%`
