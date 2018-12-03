@@ -33,6 +33,7 @@ app.get("/event/:eventId", (req, res) => {
     ]
   }).then(event => {
     res.render('eventDetails', {
+      eventId: event.id,
       title: event.title,
       startAt: event.startAt.toLocaleString(),
       endAt: event.endAt.toLocaleString(),
@@ -120,6 +121,15 @@ app.get("/api/events/:searchTerm", (req, res) => {
     }
   }).then(results => {
     res.json(results);
+  });
+});
+
+app.post("/api/event/:eventId/attend", (req, res) => {
+  model.UserEvents.create({
+    userId: req.user.id,
+    eventId: req.params.eventId
+  }).then(userEvent => {
+    res.send(201);
   });
 });
 

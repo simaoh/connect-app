@@ -12,6 +12,7 @@ block content
     h5
       i.fa.fa-user.fa-lg
       span= `${author.firstName} ${author.lastName}`
+    button.btn.btn-default.btn-md#join-event-btn(data-event-id=eventId) Join
   div.row
     div.col-sm-3
       h5
@@ -21,3 +22,5 @@ block content
         p= attendingUserName
     div.col-sm-9
       p= description
+
+  script(src="/js/eventDetails.js")

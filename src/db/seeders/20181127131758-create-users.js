@@ -12,27 +12,27 @@ module.exports = {
       }, {
         firstName: 'Simao',
         lastName: 'Herdade',
-        email: 'Simao@demo.com',
+        email: 'simao@demo.com',
         passwordHash: passwordHash
       }, {
         firstName: 'Michael',
         lastName: 'Coussement',
-        email: 'Michael@demo.com',
+        email: 'michael@demo.com',
         passwordHash: passwordHash
       }, {
         firstName: 'Tim',
         lastName: 'Qiu',
-        email: 'Timeqiu@demo.com',
+        email: 'timeqiu@demo.com',
         passwordHash: passwordHash
       }, {
         firstName: 'Jim',
         lastName: 'Herdade',
-        email: 'Jim@demo.com',
+        email: 'jim@demo.com',
         passwordHash: passwordHash
       }, {
         firstName: 'Vim',
         lastName: 'Coussement',
-        email: 'Vim@demo.com',
+        email: 'vim@demo.com',
         passwordHash: passwordHash
       },]);
     })
