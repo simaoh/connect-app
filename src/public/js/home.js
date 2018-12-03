@@ -44,7 +44,7 @@ function renderEventCard(eventData) {
          <h2>${eventData.title}</h2>
          <h5><i class="fa fa-map-marker"></i> ${eventData.location}</h5>
          <h5><i class="fa fa-calendar"></i> ${new Date(eventData.startAt).toLocaleString()}</h5>
-         <h5><i class="fa fa-user"></i> ${eventData.author.firstName} ${eventData.author.lastName}</h5>
+         <h5><i class="fa fa-users"></i> ${eventData.attendingUsers.length} attending</h5>
          <p>${eventData.description}</p>
        </div>  
     </div>

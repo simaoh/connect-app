@@ -27,9 +27,10 @@ app.get("/event/new", (req, res) => {
 
 app.get("/event/:eventId", (req, res) => {
   model.Event.findByPk(req.params.eventId, {
-    include: [{
-      model: model.User, as: 'author'
-    }]
+    include: [
+      {model: model.User, as: 'author'},
+      {model: model.User, as: 'attendingUsers'}
+    ]
   }).then(event => {
     res.render('eventDetails', {
       title: event.title,
@@ -37,7 +38,10 @@ app.get("/event/:eventId", (req, res) => {
       endAt: event.endAt.toLocaleString(),
       description: event.description,
       location: event.location,
-      author: event.author
+      author: event.author.dataValues,
+      attendingUsersNames: event.attendingUsers.map(u => {
+        return `${u.dataValues.firstName} ${u.dataValues.lastName}`
+      })
     });
   })
 });
