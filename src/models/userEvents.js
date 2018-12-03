@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const UserEvents = sequelize.define('userEvents', {
     userId: DataTypes.INTEGER,
-    eventId: DataTypes.INTEGER
+    eventId: DataTypes.INTEGER,
   }, {
     tableName: 'userEvents'
   });
