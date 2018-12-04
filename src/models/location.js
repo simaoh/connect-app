@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
   Location.addHook('beforeSave', location => {
     location.position = {
       type: 'Point',
-      coordinates: [location.longitude, location.latitude]
+      coordinates: [location.longitude, location.latitude],
+      crs: { type: 'name', properties: { name: 'EPSG:4326'} }
     };
   });
 

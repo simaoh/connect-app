@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.DOUBLE
       },
       position: {
-        type: Sequelize.GEOMETRY('POINT')
+        type: Sequelize.GEOMETRY('POINT', 4326)
       },
       createdAt: {
         allowNull: false,
