@@ -16,6 +16,11 @@ module.exports = {
       model.Location.create(manhattan),
       model.Location.create(brooklyn),
       model.Location.create(queens),
+      model.Location.create(philadelphia),
+      model.Location.create(washingtonDC),
+      model.Location.create(raleigh),
+      model.Location.create(houston),
+      model.Location.create(losAngeles),
     ]);
   },
 
