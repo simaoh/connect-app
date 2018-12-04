@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 // redirect unauthenticated users to the home page
 app.use((req, res, next) => {
   // After successful login, redirect back to the intended page
-  if (!req.user && req.path !== "/login") {
+  if (!req.user && !["/login", "/signup"].includes(req.path)) {
     req.session.returnTo = req.path;
     res.redirect('/login');
   } else {

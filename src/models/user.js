@@ -1,4 +1,7 @@
 'use strict';
+
+const bcryptPromise = require('../helpers/bcryptPromise');
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     firstName: DataTypes.STRING,
@@ -21,6 +24,18 @@ module.exports = (sequelize, DataTypes) => {
       as: 'attendingEvents',
       through: 'userEvents',
       foreignKey: 'userId'
+    });
+  };
+
+  User.createNewUser = (firstName, lastName, email, password) => {
+    // assumes email and password are validated
+    return bcryptPromise.hashify(password).then(hash => {
+      return User.create({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        passwordHash: hash
+      });
     });
   };
 

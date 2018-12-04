@@ -17,6 +17,10 @@ app.get("/login", (req, res) => {
   res.render('login', {title: 'Login'});
 });
 
+app.get("/signup", (req, res) => {
+  res.render('signup', {title: 'Sign Up'});
+});
+
 app.get("/notifications", (req, res) => {
   res.render('notifications', {title: 'Notifications'});
 });
@@ -48,6 +52,35 @@ app.get("/event/:eventId", (req, res) => {
 });
 
 // ---------- open api ---------- //
+app.post("/signup", (req, res, next) => {
+  if (req.body.password !== req.body.confirmPassword) {
+    return res.send('password incorrect');
+  }
+
+  model.User.findOne({
+    where: {
+      email: req.body.email
+    }
+  }).then(user => {
+    if (user) {
+      return res.send('Email is taken. Please choose another email. ');
+    } else {
+      return model.User.createNewUser(
+        req.body.firstName,
+        req.body.lastName,
+        req.body.email,
+        req.body.password
+      )
+    }
+  }).then(user => {
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      res.redirect(req.session.returnTo || "/");
+      delete req.session.returnTo;
+    });
+  });
+});
+
 app.post("/login", (req, res, next) => {
   passport.authenticate('local', (err, user) => {
     if (err) { return next(err); }

@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  div.page-header
+    h3 Join us
+  form.form-horizontal(id='signup-form', method='POST', action='/signup')
+    input(type='hidden', name='_csrf', value=_csrf)
+    div.form-group
+      label.col-sm-3.control-label(for='firstName') First Name
+      div.col-sm-7
+        input.form-control(type='text', name='firstName', id='firstname', placeholder='First Name', autofocus, required)
+    div.form-group
+      label.col-sm-3.control-label(for='lastName') Last Name
+      div.col-sm-7
+        input.form-control(type='text', name='lastName', id='lastname', placeholder='Last Name', required)
+    div.form-group
+      label.col-sm-3.control-label(for='email') Email
+      div.col-sm-7
+        input.form-control(type='email', name='email', id='email', placeholder='Email', required)
+    div.form-group
+      label.col-sm-3.control-label(for='password') Password
+      div.col-sm-7
+        input.form-control(type='password', name='password', id='password', placeholder='Password', required)
+    div.form-group
+      label.col-sm-3.control-label(for='confirmPassword') Confirm Password
+      div.col-sm-7
+        input.form-control(type='password', name='confirmPassword', id='confirm-password', placeholder='Confirm Password', required)
+    div.form-group
+      div.col-sm-offset-3.col-sm-7
+        button.btn.btn-info(type='submit') Sign Up
+        a.btn.btn-default(href='/login' style="margin-left: 10px;") Return to Log In
