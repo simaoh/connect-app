@@ -2,10 +2,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
     title: DataTypes.STRING,
-    location: DataTypes.STRING,
     description: DataTypes.TEXT,
     startAt: DataTypes.DATE,
     endAt: DataTypes.DATE,
+    longitude: DataTypes.DOUBLE,
+    latitude: DataTypes.DOUBLE,
+    locationPoint: DataTypes.GEOMETRY('POINT', 4326),
   }, {
     tableName: 'events'
   });

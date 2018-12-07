@@ -11,6 +11,31 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
+      description: {
+        type: Sequelize.TEXT
+      },
+      startAt: {
+        type: Sequelize.DATE
+      },
+      endAt: {
+        type: Sequelize.DATE
+      },
+      longitude: {
+        type: Sequelize.DOUBLE
+      },
+      latitude: {
+        type: Sequelize.DOUBLE
+      },
+      locationPoint: {
+        type: Sequelize.GEOMETRY('POINT', 4326)
+      },
+      authorId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
