@@ -17,5 +17,30 @@ module.exports = (sequelize, DataTypes) => {
     };
   });
 
+  Location.prototype.toGeography = function () {
+    const geoJSON = {
+      type: this.position.type,
+      coordinates: this.position.coordinates
+    }
+
+    return `ST_GeomFromGeoJSON('${JSON.stringify(geoJSON)}')::geography`;
+  };
+
+  Location.prototype.distanceTo = function (anotherLocation) {
+    if (!anotherLocation instanceof Location) {
+      console.log('must be a location object');
+      return;
+    }
+
+    return sequelize.query(`
+      SELECT ST_Distance(
+        ${this.toGeography()},
+        ${anotherLocation.toGeography()}
+      );
+   `).then(result => {
+      return result[0][0].st_distance/1000;
+    });
+  }
+
   return Location
 };
