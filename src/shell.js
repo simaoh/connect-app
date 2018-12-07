@@ -10,17 +10,9 @@ Promise.all([
   return positions[0].distanceTo(positions[1])
 }).then(console.log);
 
-//SELECT *
-// FROM locations
-// WHERE ST_DWithin(
-// 	position,
-// 	(SELECT position FROM locations WHERE id=1)::geography,
-// 	200000
-// );
-
-// models.Location.findByPk(1).then(location => {
-//   return sequelize.query(`
-//     SELECT
-//   `);
-// });
+models.Location.findByPk(1).then(location => {
+  location.locationsWithinDistance(20000).then(result => {
+    console.log(result.map(l => l.dataValues));
+  });
+});
 

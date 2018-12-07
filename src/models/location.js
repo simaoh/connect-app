@@ -44,5 +44,20 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
+  Location.prototype.locationsWithinDistance = function (distanceMeter) {
+    return sequelize.query(`
+      SELECT *
+      FROM locations
+      WHERE ST_DWithin(
+        position,
+        ${this.toGeography()},
+        ${distanceMeter}
+      );
+    `, {
+      type: sequelize.QueryTypes.SELECT,
+      model: Location
+    });
+  };
+
   return Location
 };
