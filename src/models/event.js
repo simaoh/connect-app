@@ -30,5 +30,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  Event.prototype.getLocationGeo = function () {
+    const geoJSON = {
+      type: this.locationPoint.type,
+      coordinates: this.locationPoint.coordinates
+    }
+
+    return `ST_GeomFromGeoJSON('${JSON.stringify(geoJSON)}')::geography`;
+  };
+
+  Event.prototype.distanceTo = function (location) {
+    return postGisHelper.distanceBetween(this, location);
+  };
+
   return Event;
 };
