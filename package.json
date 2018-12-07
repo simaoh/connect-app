@@ -23,12 +23,12 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "sequelize db:migrate",
-    "migrate-undo": "sequelize db:migrate:undo",
-    "migrate-undo-all": "sequelize db:migrate:undo:all",
-    "seed-all": "sequelize db:seed:all",
-    "seed-all-undo": "sequelize db:seed:undo:all",
-    "rebuild": "npm run migrate-undo-all && npm run migrate && npm run seed-all"
+    "db:migrate": "sequelize db:migrate",
+    "db:rollback": "sequelize db:migrate:undo",
+    "db:destroy": "sequelize db:migrate:undo:all",
+    "db:seed": "sequelize db:seed:all",
+    "db:unseed": "sequelize db:seed:undo:all",
+    "db:rebuild": "npm run db:destroy && npm run db:migrate && npm run db:seed"
   },
   "author": "",
   "license": "ISC"

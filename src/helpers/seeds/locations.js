@@ -1,4 +1,4 @@
-const modelUtils = require('../../../models/utils');
+const modelUtils = require('../postGis');
 
 const locations = {
   manhattan    : {

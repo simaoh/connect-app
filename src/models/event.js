@@ -1,4 +1,6 @@
 'use strict';
+const postGisHelper = require('../helpers/postGis');
+
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
     title: DataTypes.STRING,
@@ -21,6 +23,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'eventId',
     });
   };
+
+  Event.addHook('beforeSave', event => {
+    if (event.longitude && event.latitude) {
+      event.locationPoint = postGisHelper.geoJsonFromCoordinatesObj(event);
+    }
+  });
 
   return Event;
 };
