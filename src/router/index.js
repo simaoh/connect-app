@@ -10,7 +10,11 @@ app.get("/am_i_alive", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.render('home', {title: 'Home'});
+  res.redirect('/events')
+});
+
+app.get("/events", (req, res) => {
+  res.render('events', {title: 'Events'});
 });
 
 app.get("/login", (req, res) => {
