@@ -24,12 +24,12 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
+  // postgis functions
   Event.prototype.geoJsonFromCoordinates = geoJsonMixins.geoJsonFromCoordinates;
   Event.prototype.getLocationGeo = geoJsonMixins.geoFromGeomPoint;
-
-  Event.addHook('beforeSave', event => {
-    if (event.longitude && event.latitude) {
-      event.geopoint = event.geoJsonFromCoordinates();
+  Event.addHook('beforeSave', model=> {
+    if (model.longitude && model.latitude) {
+      model.geopoint = model.geoJsonFromCoordinates();
     }
   });
 

@@ -20,6 +20,15 @@ module.exports = {
       passwordHash: {
         type: Sequelize.STRING
       },
+      longitude: {
+        type: Sequelize.DOUBLE
+      },
+      latitude: {
+        type: Sequelize.DOUBLE
+      },
+      geopoint: {
+        type: Sequelize.GEOMETRY('POINT', 4326)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
