@@ -47,7 +47,6 @@ app.get("/event/:eventId", (req, res) => {
       startAt: event.startAt.toLocaleString(),
       endAt: event.endAt.toLocaleString(),
       description: event.description,
-      location: event.location,
       author: event.author.dataValues,
       attendingUsersNames: event.attendingUsers.map(u => {
         return `${u.dataValues.firstName} ${u.dataValues.lastName}`
