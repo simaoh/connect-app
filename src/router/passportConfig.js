@@ -1,11 +1,12 @@
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models').User;
+const models = require('../models');
 const bcryptPromise = require('../helpers/bcryptPromise');
 
+console.log('password ', Object.keys(models))
 const authenticateByEmailAndPasswordStrategy = new LocalStrategy({
   usernameField: 'email'
 }, (email, password, done) => {
-    User.findOne({
+    models.User.findOne({
       where: {
         email: email.toLowerCase(),
       }
@@ -27,7 +28,7 @@ const serializeUserhandler = (user, done) => {
 };
 
 const deserializeUserhandler = (id, done) => {
-  User.findByPk(id).then(user => {
+  models.User.findByPk(id).then(user => {
     return done(undefined, user);
   }).catch(err => {
     return done(err);

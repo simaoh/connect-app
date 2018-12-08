@@ -40,5 +40,6 @@ sequelize.authenticate().then(() => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+console.log('Loading models: ', Object.keys(db));
 
 module.exports = db;

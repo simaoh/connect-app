@@ -1,13 +1,12 @@
 const models = require('./models');
 const app = require('./router');
-const Sequelize = require('sequelize');
-const sequelize = models.sequelize;
+const postGisHelper = require('./helpers/postGis');
 
 Promise.all([
   models.Event.findByPk(1),
   models.Event.findByPk(2),
 ]).then(events => {
-  return events[0].distanceTo(events[1])
+  return postGisHelper.distanceBetween(events[0], events[1]);
 }).then(console.log);
 
 // models.Location.findByPk(1).then(location => {
@@ -16,3 +15,4 @@ Promise.all([
 //   });
 // });
 
+// console.log (models.sequelize.query)

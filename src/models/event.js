@@ -1,5 +1,4 @@
 'use strict';
-const postGisHelper = require('../helpers/postGis');
 
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
@@ -37,10 +36,6 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     return `ST_GeomFromGeoJSON('${JSON.stringify(geoJSON)}')::geography`;
-  };
-
-  Event.prototype.distanceTo = function (location) {
-    return postGisHelper.distanceBetween(this, location);
   };
 
   return Event;
