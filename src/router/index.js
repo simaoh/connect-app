@@ -4,6 +4,7 @@ const model = require('../models');
 const Sequelize = require('sequelize');
 const passport = require('passport');
 const Op = Sequelize.Op;
+const postGisHelper = require('../helpers/postGisHelper');
 
 app.get("/am_i_alive", (req, res) => {
   res.send("OK!");
@@ -128,6 +129,14 @@ app.get("/api/events", (req, res) => {
       {model: model.User, as: 'author'},
       {model: model.User, as: 'attendingUsers'}
     ]
+  }).then(events => {
+    return Promise.all(events.map(event => {
+      const eventData = event.toJSON();
+      return postGisHelper.distanceBetween(event, req.user).then(distance => {
+        eventData.distance = distance;
+        return eventData;
+      });
+    }));
   }).then(events => {
     res.json(events);
   });

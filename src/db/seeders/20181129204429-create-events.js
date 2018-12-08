@@ -5,7 +5,7 @@ const models = require('../../models');
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return models.Event.bulkCreate([{
-      title: 'Coffee',
+      title: 'Coffee in NYC',
       longitude: locations.manhattan.longitude,
       latitude: locations.manhattan.latitude,
       description: 'Want to get some espresso',
@@ -13,7 +13,7 @@ module.exports = {
       endAt: new Date('Jan 2 2018'),
       authorId: 1
     }, {
-      title: 'Comedy Show',
+      title: 'Brooklyn Comedy Show',
       longitude: locations.brooklyn.longitude,
       latitude: locations.brooklyn.latitude,
       description: 'Want to watch Louis CK',
@@ -21,7 +21,7 @@ module.exports = {
       endAt: new Date('Jan 20 2018'),
       authorId: 2
     }, {
-      title: 'Tennis this weekend',
+      title: 'Tennis this weekend in Queens',
       longitude: locations.queens.longitude,
       latitude: locations.queens.latitude,
       description: 'Lets play a few games',
@@ -29,15 +29,15 @@ module.exports = {
       endAt: new Date('Jan 4 2018'),
       authorId: 3
     }, {
-      title: 'Hiking in the mountains',
+      title: 'Walking in Central Park',
       longitude: locations.manhattan.longitude,
       latitude: locations.manhattan.latitude,
-      description: 'Catskills anyone? 10 mile hike round trip',
+      description: 'Run or walk, choose your pace',
       startAt: new Date('Jan 10 2018'),
       endAt: new Date('Jan 20 2018'),
       authorId: 4
     }, {
-      title: 'Surfing at the beach',
+      title: 'Surfing at the Rockaway Beach',
       longitude: locations.brooklyn.longitude,
       latitude: locations.brooklyn.latitude,
       description: 'Let\'s catch some waves!',
@@ -45,31 +45,31 @@ module.exports = {
       endAt: new Date('Jan 2 2018'),
       authorId: 5
     }, {
-      title: 'Coding Practice',
+      title: 'Get a Philly Cheesesteak',
       longitude: locations.philadelphia.longitude,
       latitude: locations.philadelphia.latitude,
-      description: 'Want to get some javascript',
+      description: 'become more disgusting than we already are',
       startAt: new Date('Jan 1 2018'),
       endAt: new Date('Jan 2 2018'),
       authorId: 6
     }, {
-      title: 'Rock Concert',
+      title: 'Protest at the white house',
       longitude: locations.washingtonDC.longitude,
       latitude: locations.washingtonDC.latitude,
-      description: 'Want to watch Britney Spears',
+      description: 'Donald trump sucks',
       startAt: new Date('Jan 10 2018'),
       endAt: new Date('Jan 20 2018'),
       authorId: 1
     }, {
-      title: 'Backstreet Boys',
+      title: 'North Carolina tour',
       longitude: locations.raleigh.longitude,
       latitude: locations.raleigh.latitude,
-      description: 'Let\'s be 13 again',
+      description: 'You tried the best. Now try the rest.',
       startAt: new Date('Jan 3 2018'),
       endAt: new Date('Jan 4 2018'),
       authorId: 2
     }, {
-      title: 'Volunteer at homeless shelter',
+      title: 'Volunteer at homeless shelter in Texas',
       longitude: locations.houston.longitude,
       latitude: locations.houston.latitude,
       description: 'Do something nice',
@@ -77,10 +77,10 @@ module.exports = {
       endAt: new Date('Jan 20 2018'),
       authorId: 2
     }, {
-      title: 'Surfing at at Rockaway NY',
+      title: 'Stalk Hollywood celebrities',
       longitude: locations.losAngeles.longitude,
       latitude: locations.losAngeles.latitude,
-      description: 'Waves, let\'s catch some',
+      description: 'I hear Scarlett Johanson will be getting some starbucks',
       startAt: new Date('Jan 1 2018'),
       endAt: new Date('Jan 2 2018'),
       authorId: 6
