@@ -26,7 +26,7 @@ module.exports = {
       latitude: {
         type: Sequelize.DOUBLE
       },
-      locationPoint: {
+      geopoint: {
         type: Sequelize.GEOMETRY('POINT', 4326)
       },
       authorId: {

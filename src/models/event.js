@@ -1,4 +1,5 @@
 'use strict';
+const geoJsonMixins = require('./mixins/geoJsonMixins');
 
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
@@ -8,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     endAt: DataTypes.DATE,
     longitude: DataTypes.DOUBLE,
     latitude: DataTypes.DOUBLE,
-    locationPoint: DataTypes.GEOMETRY('POINT', 4326),
+    geopoint: DataTypes.GEOMETRY('POINT', 4326),
   }, {
     tableName: 'events'
   });
@@ -23,20 +24,14 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
+  Event.prototype.geoJsonFromCoordinates = geoJsonMixins.geoJsonFromCoordinates;
+  Event.prototype.getLocationGeo = geoJsonMixins.geoFromGeomPoint;
+
   Event.addHook('beforeSave', event => {
     if (event.longitude && event.latitude) {
-      event.locationPoint = postGisHelper.geoJsonFromCoordinatesObj(event);
+      event.geopoint = event.geoJsonFromCoordinates();
     }
   });
-
-  Event.prototype.getLocationGeo = function () {
-    const geoJSON = {
-      type: this.locationPoint.type,
-      coordinates: this.locationPoint.coordinates
-    }
-
-    return `ST_GeomFromGeoJSON('${JSON.stringify(geoJSON)}')::geography`;
-  };
 
   return Event;
 };
